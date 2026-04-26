@@ -6384,7 +6384,8 @@ function renderSpellCard(word) {
   $('sp-feedback').innerHTML = ''; $('sp-hint').textContent = '';
   $('sp-actions').style.display = 'none'; $('sp-skip-btn').style.display = 'none';
   $('sp-retry-btn').style.display = 'block'; $('sp-check-btn').style.display = 'block';
-  speak(word.dutch); setTimeout(() => inp.focus(), 150);
+  $('sp-skip-btn').onclick = skipSpell;
+  speak(word.dutch); inp.focus();
 }
 
 function updateSpellProgress() {
@@ -6401,7 +6402,11 @@ function checkSpell() {
     inp.className = 'sp-input correct'; inp.disabled = true;
     $('sp-check-btn').style.display = 'none';
     renderFeedback('sp-feedback', typed, correct);
-    sp.completed++; updateSpellProgress(); setTimeout(nextSpell, 900);
+    sp.completed++; updateSpellProgress();
+    $('sp-retry-btn').style.display = 'none';
+    $('sp-skip-btn').onclick = nextSpell;
+    $('sp-skip-btn').style.display = 'block';
+    $('sp-actions').style.display = 'flex';
   } else {
     inp.className = 'sp-input wrong'; inp.disabled = true;
     $('sp-check-btn').style.display = 'none';
@@ -6437,7 +6442,7 @@ function renderFeedback(containerId, typed, correct) {
 function retrySpell() {
   const inp = $('sp-input'); inp.value = ''; inp.disabled = false; inp.className = 'sp-input';
   $('sp-feedback').innerHTML = ''; $('sp-actions').style.display = 'none';
-  $('sp-check-btn').style.display = 'block'; setTimeout(() => inp.focus(), 100);
+  $('sp-check-btn').style.display = 'block'; inp.focus();
 }
 function skipSpell()     { S.spell.retryQueue.push(S.spell.current); nextSpell(); }
 function speakSpellWord(){ if (S.spell.current) speak(S.spell.current.dutch); }
