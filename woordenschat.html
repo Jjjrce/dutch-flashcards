@@ -227,7 +227,7 @@
     .choice.correct { border-color: #4caf50 !important; background: #f1faf1 !important; color: #2e7d32; }
     .choice.wrong   { border-color: #ef5350 !important; background: #fff5f5 !important; color: #c62828; }
     .choice-en { display: block; }
-    .choice-nl { display: none; font-size: 13px; font-weight: 700; color: var(--accent-dark); margin-top: 3px; }
+    .choice-nl { visibility: hidden; font-size: 13px; font-weight: 700; color: var(--accent-dark); margin-top: 3px; }
     .choice.correct .choice-nl { color: #2e7d32; }
     .choice.wrong   .choice-nl { color: #c62828; }
 
@@ -6094,7 +6094,7 @@ function revealChoices(containerId, chosen, correct) {
     const eng = btn.dataset.english;
     if (eng === correct)               btn.classList.add('correct');
     else if (eng === chosen && eng !== correct) btn.classList.add('wrong');
-    btn.querySelector('.choice-nl').style.display = 'block';
+    btn.querySelector('.choice-nl').style.visibility = 'visible';
   });
 }
 
