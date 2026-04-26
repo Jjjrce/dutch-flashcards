@@ -1,6 +1,6 @@
 # 🌷 Woordenschat — Dutch Flashcard App
 
-一个为自己打造的荷兰语单词学习应用，移动端优先，开箱即用。
+自用荷兰语背单词应用。
 
 **访问地址：** https://jjjrce.github.io/dutch-flashcards/
 
